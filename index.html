@@ -7,6 +7,18 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@600;700&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700;800&display=swap');
 
+/* ---------- Mileast display serif (header brand name) ---------- */
+@font-face{
+  font-family:'Mileast';
+  src:url('Mileast.otf') format('opentype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Mileast';
+  src:url('Mileast-Italic.otf') format('opentype');
+  font-weight:400;font-style:italic;font-display:swap;
+}
+
 :root{
   --bg:#0a0a0a;
   --bg-2:#0f0f0f;
@@ -46,13 +58,32 @@ header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,10,
 nav{max-width:1180px;margin:0 auto;padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:nowrap;min-height:0;}
 .brand{display:flex;align-items:center;gap:14px;min-width:0;flex:1 1 auto;overflow:hidden;cursor:pointer;}
 .brand img{width:66px;height:66px;border-radius:50%;object-fit:cover;flex:0 0 auto;background:#0d1730;border:1.5px solid var(--red-deep);}
-.brand-name{font-family:'Teko',sans-serif;font-weight:700;font-size:46px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;line-height:1;display:flex;align-items:center;overflow:hidden;text-overflow:ellipsis;min-width:0;position:relative;
+.brand-name{
+  font-family:'Mileast','Cormorant Garamond',Georgia,serif;
+  font-weight:400;
+  font-size:38px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  white-space:nowrap;
+  line-height:1;
+  display:flex;align-items:center;
+  overflow:hidden;text-overflow:ellipsis;min-width:0;position:relative;
+  padding-bottom:8px;
   color:#fdfdfd;
-  transform:skewX(-6deg);
-  text-shadow:2px 2px 0 rgba(57,255,20,0.9), 4px 4px 10px rgba(0,0,0,0.55);
+  transform:none;
+  text-shadow:0 2px 12px rgba(0,0,0,0.5);
 }
-.brand-name span{color:var(--red);margin:0 4px;text-shadow:2px 2px 0 rgba(255,255,255,0.12), 0 0 20px rgba(57,255,20,0.75);}
-.brand-name::after{content:"";position:absolute;left:1px;right:6%;bottom:-3px;height:3px;background:linear-gradient(90deg, var(--red) 0%, transparent 100%);transform:skewX(-6deg);}
+.brand-name span{
+  font-style:italic;
+  color:var(--red);
+  margin:0 8px;
+  text-shadow:0 0 18px rgba(57,255,20,0.7);
+}
+.brand-name::after{
+  content:"";position:absolute;left:0;right:6%;bottom:0;height:2px;
+  background:linear-gradient(90deg, var(--red) 0%, transparent 100%);
+  transform:none;
+}
 .nav-links{display:flex;gap:24px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;font-size:14px;}
 .nav-links a{color:var(--dim);transition:color .2s;padding-bottom:4px;border-bottom:2px solid transparent;cursor:pointer;}
 .nav-links a:hover{color:var(--white);}
@@ -387,6 +418,7 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
 
   .hamburger{display:flex;}
   nav{padding:20px 20px;}
+  .brand-name{font-size:32px;letter-spacing:2px;}
   .nav-links{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:rgba(6,7,6,0.98);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .3s ease;}
   .nav-links.open{max-height:calc(100vh - 64px);overflow-y:auto;}
   .nav-links a{padding:16px 24px;border-bottom:1px solid var(--line);width:100%;box-sizing:border-box;font-size:15px;}
@@ -403,7 +435,8 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
   /* header — fixed, consistent height on every page */
   nav{padding:16px 16px;gap:8px;min-height:66px;}
   .brand{gap:8px;}
-  .brand-name{font-size:25px;letter-spacing:0.2px;}
+  .brand-name{font-size:20px;letter-spacing:1px;padding-bottom:5px;}
+  .brand-name span{margin:0 5px;}
   .brand img{width:40px;height:40px;}
   .nav-right{gap:8px;}
   .nav-right .btn{padding:9px 14px;font-size:11.5px;letter-spacing:1.2px;}
@@ -425,10 +458,10 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
   /* ---- hero banner: real <img> layer with object-fit for a reliable, non-jumpy crop on any phone ---- */
   .hero{
     display:flex;
-    align-items:flex-start; /* anchor content to the top of the box, not the bottom */
+    align-items:flex-start;
     min-height:88vh;
-    min-height:88dvh; /* stops the crop shifting when the mobile address bar shows/hides */
-    padding-top:78px; /* clears the fixed header (nav min-height 66px + breathing room) so hero text is never hidden behind it, no matter how tall the text block gets */
+    min-height:88dvh;
+    padding-top:78px;
     padding-bottom:0;
     position:relative;
     background:none;
@@ -446,7 +479,7 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
     width:100%;
     height:100%;
     object-fit:cover;
-    object-position:70% center; /* image is wide with subjects right-of-center — this keeps them in frame on tall phone screens */
+    object-position:70% center;
     display:block;
   }
   .hero-photo-layer::after{
@@ -506,9 +539,10 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
   nav{min-height:60px;padding:14px 12px;}
   .nav-right .btn span{display:none;}
   .nav-right .btn{padding:9px;width:42px;height:42px;justify-content:center;font-size:16px;}
-  .brand-name{font-size:21px;}
+  .brand-name{font-size:16px;letter-spacing:0.5px;}
+  .brand-name span{margin:0 4px;}
   .brand img{width:34px;height:34px;}
-  .hero{min-height:82vh;padding-top:68px;} /* nav shrinks to 60px here, so trim the clearance to match */
+  .hero{min-height:82vh;padding-top:68px;}
   .hero h1{font-size:clamp(26px,10vw,32px);}
   .supp-list{grid-template-columns:1fr 1fr;}
 }
@@ -692,15 +726,65 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
     <div class="wrap"><div class="eyebrow center" style="justify-content:center;">Ready?</div><h2>Grow Stronger With Ozone</h2><p>Walk in for a free floor tour and fitness assessment, or lock in your membership today.</p><a class="btn" data-nav="plans">See Membership Plans</a></div>
   </section>
 
+  <!-- ===== UPDATED: Full plan details on the home page ===== -->
   <section>
     <div class="wrap">
-      <div class="section-head"><div class="eyebrow">Membership</div><h2>Plans At A Glance</h2><p>Strength and cardio access, or go all-in with a dedicated personal trainer.</p></div>
+      <div class="section-head"><div class="eyebrow">Membership</div><h2>Plans &amp; Pricing</h2><p>Strength and cardio access, or go all-in with a dedicated personal trainer. Combo pricing available for 2 or more people joining together.</p></div>
       <div class="plans-grid">
-        <div class="plan-card"><div class="plan-head"><h3>Strength</h3><p>Free-weights, machines &amp; strength floor</p></div><div class="plan-rows"><div class="plan-row"><span class="term">Monthly</span><span class="price">₹1,499<small>+₹200 admission</small></span></div><div class="plan-row"><span class="term">1 Year Annual</span><span class="price">₹12,000</span></div></div></div>
-        <div class="plan-card featured"><div class="plan-ribbon">Most Complete</div><div class="plan-head"><h3>Personal Training</h3><p>One-on-one with Mr. Khan's team</p></div><div class="plan-rows"><div class="plan-row"><span class="term">Monthly</span><span class="price">₹8,000</span></div><div class="plan-row"><span class="term">1 Year Annual</span><span class="price">₹70,000</span></div></div></div>
-        <div class="plan-card"><div class="plan-head"><h3>Cardio</h3><p>Cardio floor &amp; conditioning access</p></div><div class="plan-rows"><div class="plan-row"><span class="term">Monthly</span><span class="price">₹2,000<small>+₹200 admission</small></span></div><div class="plan-row"><span class="term">1 Year Annual</span><span class="price">₹18,000</span></div></div></div>
+
+        <!-- STRENGTH -->
+        <div class="plan-card">
+          <div class="plan-thumb"><img src="https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strength floor"></div>
+          <div class="plan-head"><h3>Strength</h3><p>Free-weights, machines &amp; strength floor access</p></div>
+          <div class="plan-rows">
+            <div class="plan-row"><span class="term">Monthly</span><span class="price"><span class="strike">₹1,800</span><span class="offer">₹1,499</span><small>+₹200 admission</small></span></div>
+            <div class="plan-row"><span class="term">3 Months</span><span class="price"><span class="strike">₹4,500</span><span class="offer">₹3,599</span></span></div>
+            <div class="plan-row"><span class="term">6 Months</span><span class="price"><span class="strike">₹8,000</span><span class="offer">₹5,999</span></span></div>
+            <div class="plan-row"><span class="term">1 Year Annual</span><span class="price"><span class="strike">₹16,000</span><span class="offer">₹12,000</span></span></div>
+          </div>
+          <div class="plan-foot"><a class="btn outline" style="width:100%;justify-content:center;" data-nav="contact">Enquire</a></div>
+        </div>
+
+        <!-- PERSONAL TRAINING -->
+        <div class="plan-card featured">
+          <div class="plan-ribbon">Most Complete</div>
+          <div class="plan-thumb"><img src="https://images.pexels.com/photos/4853672/pexels-photo-4853672.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Personal training"></div>
+          <div class="plan-head"><h3>Personal Training</h3><p>One-on-one coaching with Mr. Khan's team</p></div>
+          <div class="plan-rows">
+            <div class="plan-row"><span class="term">Monthly</span><span class="price">₹8,000</span></div>
+            <div class="plan-row"><span class="term">3 Months</span><span class="price">₹21,000</span></div>
+            <div class="plan-row"><span class="term">6 Months</span><span class="price">₹40,000</span></div>
+            <div class="plan-row"><span class="term">1 Year Annual</span><span class="price">₹70,000</span></div>
+          </div>
+          <div class="plan-foot">
+            <ul class="pt-benefits">
+              <li>Approximately 3–4 kg of weight loss per month</li>
+              <li>A dedicated personal trainer with you in every session</li>
+              <li>A diet plan customised to your medical reports</li>
+              <li>2 cross-fit sessions included</li>
+              <li>Full-body stretching for muscle recovery</li>
+            </ul>
+            <a class="btn" style="width:100%;justify-content:center;margin-top:18px;" data-nav="contact">Enquire</a>
+          </div>
+        </div>
+
+        <!-- CARDIO -->
+        <div class="plan-card">
+          <div class="plan-thumb"><img src="https://images.pexels.com/photos/3890344/pexels-photo-3890344.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cardio training"></div>
+          <div class="plan-head"><h3>Cardio</h3><p>Cardio floor, endurance &amp; conditioning access</p></div>
+          <div class="plan-rows">
+            <div class="plan-row"><span class="term">Monthly</span><span class="price">₹2,000<small>+₹200 admission</small></span></div>
+            <div class="plan-row"><span class="term">3 Months</span><span class="price">₹5,000</span></div>
+            <div class="plan-row"><span class="term">3+1 Months <small style="color:var(--dimmer)">(2+ persons)</small></span><span class="price">₹6,000</span></div>
+            <div class="plan-row"><span class="term">6 Months</span><span class="price">₹10,000</span></div>
+            <div class="plan-row"><span class="term">1 Year Annual</span><span class="price">₹18,000</span></div>
+          </div>
+          <div class="plan-foot"><a class="btn outline" style="width:100%;justify-content:center;" data-nav="contact">Enquire</a></div>
+        </div>
+
       </div>
-      <div class="wrap" style="text-align:center;margin-top:32px;padding:0;"><a class="btn outline" data-nav="plans">See Full Pricing</a></div>
+      <div class="note-strip">3+1 combo pricing applies for 2 or more people joining together. Call the gym directly to confirm current rates before enrolling.</div>
+      <div style="text-align:center;margin-top:32px;"><a class="btn outline" data-nav="plans">See Full Pricing &amp; Gym Rules</a></div>
     </div>
   </section>
 </div>
@@ -951,12 +1035,12 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
         <div class="contact-card">
           <div class="contact-row"><div class="ico">📍</div><div><b>Location</b><span>SJR Complex, 2nd Floor, Near Nandyal Checkpost, Kurnool, Andhra Pradesh 518002</span></div></div>
           <div class="contact-row"><div class="ico">📞</div><div><b>Phone</b><span><a href="tel:+918500855006">+91 85008 55006</a> / <a href="tel:+918885005521">+91 88850 05521</a></span></div></div>
-          <div class="contact-row"><div class="ico">🌐</div><div><b>Website</b><span><a href="https://www.ozonefintessplanet.co.in" target="_blank" rel="noopener">www.ozonefintessplanet.co.in</a></span></div></div>
+          <div class="contact-row"><div class="ico">🌐</div><div><b>Website</b><span><a href="https://www.ozonefitnessplanet2.co.in" target="_blank" rel="noopener">www.ozonefitnessplanet2.co.in</a></span></div></div>
           <div class="contact-row"><div class="ico">✉️</div><div><b>Email</b><span>planetozonefitness07@gmail.com</span></div></div>
           <div class="contact-row"><div class="ico">🏋️</div><div><b>Proprietor</b><span>Mr Khan Sab — Senior Most Level 2 Fitness Trainer, USA Certified Nutritionist</span></div></div>
         </div>
         <div class="qr-card">
-          <div class="qr-box"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwww.ozonefintessplanet.co.in" alt="Scan to visit Ozone Fitness Planet website"></div>
+          <div class="qr-box"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwww.ozonefitnessplanet2.co.in" alt="Scan to visit Ozone Fitness Planet website"></div>
           <div class="qr-text"><b>Scan To Connect</b><span>Point your phone camera at this code to save our number, open our website, or find us on the map — same as the QR on our business card.</span></div>
         </div>
         <div class="location-card" style="margin-top:22px;">
@@ -1013,7 +1097,7 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
         <h4>Contact</h4>
         <p>planetozonefitness07@gmail.com</p>
         <p>+91 85008 55006 / +91 88850 05521</p>
-        <p><a href="https://www.ozonefintessplanet.co.in" target="_blank" rel="noopener">www.ozonefintessplanet.co.in</a></p>
+        <p><a href="https://www.ozonefitnessplanet2.co.in" target="_blank" rel="noopener">www.ozonefitnessplanet2.co.in</a></p>
         <p>SJR Complex, 2nd Floor, Near Nandyal Checkpost, Kurnool, Andhra Pradesh 518002</p>
       </div>
     </div>
@@ -1022,13 +1106,7 @@ footer{padding:56px 0 28px;border-top:1px solid var(--line);background:var(--bg-
 </footer>
 
 <script>
-/* ---------- SPA navigation with real history support ----------
-   pushState/replaceState are wrapped in try/catch because sandboxed
-   preview frames (e.g. an artifact/srcdoc preview) block the History
-   API and throw a SecurityError. On a real, normally-hosted page
-   (your own domain) these calls succeed and the browser/phone back
-   button will correctly step through Home → About → Services etc.
-*/
+/* ---------- SPA navigation with real history support ---------- */
 var PAGES = ['home','about','services','plans','contact'];
 
 function safePushState(state, hash){
